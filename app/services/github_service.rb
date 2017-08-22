@@ -3,7 +3,7 @@ class GithubService
 
  def initialize(user)
    @user_name = user.screen_name
-   @user_token = user.token
+   @user_token = user.oauth_token
    @conn = Faraday.new(url: "https://api.github.com") do |faraday|
      faraday.adapter  Faraday.default_adapter
      faraday.params[:access_token] = user_token
@@ -12,7 +12,6 @@ class GithubService
 
   def user_info
     parse(conn.get("user"))
-    binding.pry
   end
 
    private
