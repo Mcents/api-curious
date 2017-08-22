@@ -1,17 +1,23 @@
-require 'rails_helper'
+class GithubService
+ attr_reader :conn, :user_name, :user_token
 
-describe GithubService do
-  attr_reader :service
+ def initialize(user)
+   @user_name = user.screen_name
+   @user_token = user.token
+   @conn = Faraday.new(url: "https://api.github.com") do |faraday|
+     faraday.adapter  Faraday.default_adapter
+     faraday.params[:access_token] = user_token
+   end
+ end
 
-  before(:each) do
-    @service = GithubService.new
+  def user_info
+    parse(conn.get("user"))
+    binding.pry
   end
-end
 
-describe "followers" do
-  it "returns the github accounts followers" do
-    follower = @service.followers
+   private
 
-    expect(followers.class).to eq(Array)
-  end
+   def parse(response)
+       JSON.parse(response.body, symbolize_names: true)
+   end
 end
