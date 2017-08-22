@@ -25,6 +25,23 @@ require 'rspec/rails'
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
+def stub_omniauth
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new( {"provider"=>"github",
+                                                                "uid"=>"16926627",
+                                                                "info"=>
+  {"nickname"=>"mcents",
+   "email"=>nil,
+   "name"=>"Michael Centrelli ",
+   "image"=>"https://avatars.githubusercontent.com/u/16926627?v=3",
+   "urls"=>{"GitHub"=>"https://github.com/antciccone", "Blog"=>"https://mcents.github.io/"}},
+  "credentials"=>{"token"=>ENV['TOKEN'], "expires"=>false},
+  "extra"=>
+  {"raw_info"=>
+   {"login"=>"mcents",
+    "name"=>"Michael Centrelli",
+    "id"=>16926627}}})
+end
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
