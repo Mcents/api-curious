@@ -11,7 +11,6 @@ describe 'login' do
 
     expect(page).to have_content("Login with Github")
     click_link 'Login with Github'
-    save_and_open_page
 
     expect(current_path).to eq(users_path)
     expect(page).to have_content("Michael Centrelli")
