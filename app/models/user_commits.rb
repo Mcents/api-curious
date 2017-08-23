@@ -1,6 +1,6 @@
 class UserCommits
   
-  attr_reader :commit_repo
+  attr_reader :commit_repo, :commit_created
   def initialize(user_commits={})
     @commit_repo = user_commits[:repo][:name]
     @commit_created = user_commits[:created_at].to_date.strftime("%B %d, %Y")

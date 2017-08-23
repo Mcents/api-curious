@@ -18,6 +18,10 @@ class GithubService
     parse(conn.get("users/#{user_name}/events"))
   end
 
+  def follower_commits
+    parse(conn.get("users/#{user_name}/received_events"))
+  end
+  
    private
 
    def parse(response)

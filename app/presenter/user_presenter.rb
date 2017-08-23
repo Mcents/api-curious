@@ -12,6 +12,10 @@ class UserPresenter
     UserCommits.user_commits(current_user)
   end
 
+  def user_followers
+    FollowerCommits.user_followers(current_user)
+  end
+
 private
   attr_reader :current_user
 end
