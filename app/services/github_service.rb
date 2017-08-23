@@ -25,6 +25,14 @@ class GithubService
   def starred_repo
     parse(conn.get("users/#{user_name}/starred"))
   end
+
+  def orgs_info
+    parse(conn.get("users/#{user_name}/orgs"))
+  end
+
+  def user_repo
+    parse(conn.get("users/#{user_name}/repos"))
+  end
   
    private
 

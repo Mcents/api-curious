@@ -8,7 +8,6 @@ class GithubUser
     @blog  = user_attributes[:blog]
     @following = user_attributes[:following]
     @created_at = user_attributes[:created_at].to_date.strftime("%B %d, %Y")
-
   end
 
   def self.user_info(user)

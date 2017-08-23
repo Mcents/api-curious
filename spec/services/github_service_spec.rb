@@ -7,16 +7,35 @@ describe GithubService do
 
 
         user = OpenStruct.new(
-        d: 94,
+        id: 94,
          screen_name: "mcents",
          uid: "16926627",
-          oauth_token: "3f2dc06b716c811604e0b9bf0886814b5883e5c2",
+          oauth_token: ENV['TOKKEN'],
          name: "Michael Centrelli")
  
         user_info = GithubService.new(user).user_info
-
         expect(user_info.class).to eq(Hash)
         expect(user_info).to have_key(:login)
+      end
+    end
+  end
+
+  context "#follower_commits" do
+    it "retrieves users followers info" do
+      VCR.use_cassette("#follower_commits") do
+
+
+        user = OpenStruct.new(
+        id: 94,
+         screen_name: "mcents",
+         uid: "16926627",
+          oauth_token: ENV['TOKKEN'],
+         name: "Michael Centrelli")
+
+        fol_info = GithubService.new(user).follower_commits
+
+        expect(fol_info.class).to eq(Hash)
+        expect(fol_info.first).to have_key(:login) 
       end
     end
   end

@@ -20,6 +20,14 @@ class UserPresenter
     StarredRepo.star_rep(current_user)
   end
 
+  def org_info
+    UserOrgs.org_info(current_user)
+  end
+
+  def user_repo_info
+    GithubUserRepo.user_repo(current_user)
+  end
+
 private
   attr_reader :current_user
 end
