@@ -7,6 +7,11 @@ class UserPresenter
   def user_info
     GithubUser.user_info(current_user)
   end
-  private
+
+  def user_commits
+    UserCommits.user_commits(current_user)
+  end
+
+private
   attr_reader :current_user
 end
