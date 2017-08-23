@@ -14,6 +14,7 @@ describe GithubService do
          name: "Michael Centrelli")
  
         user_info = GithubService.new(user).user_info
+
         expect(user_info.class).to eq(Hash)
         expect(user_info).to have_key(:login)
       end
@@ -34,8 +35,8 @@ describe GithubService do
 
         fol_info = GithubService.new(user).follower_commits
 
-        expect(fol_info.class).to eq(Hash)
-        expect(fol_info.first).to have_key(:login) 
+        expect(fol_info.class).to eq(Array)
+        expect(fol_info.first).to have_key(:repo)
       end
     end
   end
