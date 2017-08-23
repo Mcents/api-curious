@@ -16,6 +16,10 @@ class UserPresenter
     FollowerCommits.user_followers(current_user)
   end
 
+  def starred_repo
+    StarredRepo.star_rep(current_user)
+  end
+
 private
   attr_reader :current_user
 end

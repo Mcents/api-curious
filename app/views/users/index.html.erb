@@ -31,7 +31,6 @@
               <p><i class="fa fa-male fa-fw w3-margin-right w3-large w3-text-teal"></i>Followers: <%= @presenter.user_info.followers%><p>
               <p><i class="fa fa-male fa-fw w3-margin-right w3-large w3-text-teal"></i>Following: <%= @presenter.user_info.following %></p>
               <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>Email: <%= @presenter.user_info.email %></p>
-              <p><i class="fa fa-star fa-fw w3-margin-right w3-large w3-text-teal"></i>Starred Repos: </p>
               <hr>
 
               <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
@@ -89,6 +88,11 @@
             <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Follower Activity</h2>
             <% @presenter.user_followers.each do |commit| %>
             <%= commit[:repo][:name] %>
+          <% end %>
+
+            <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Starred Repo's</h2>
+            <% @presenter.starred_repo.each do |commit| %>
+            <%= commit[:name] %>
           <% end %>
 
                 <div class="w3-container">

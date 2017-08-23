@@ -13,6 +13,7 @@
 !/log/.keep
 !/tmp/.keep
 /spec/cassettes
+config/environment_variables.yml
 
 /node_modules
 /yarn-error.log

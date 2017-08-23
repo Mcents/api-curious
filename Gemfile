@@ -44,6 +44,7 @@ group :development, :test do
   gem 'launchy'
   gem 'vcr'
   gem 'webmock'
+  gem 'factory_girl_rails'
 end
 
 group :development do
