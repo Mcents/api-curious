@@ -40,4 +40,25 @@ describe GithubService do
       end
     end
   end
+
+
+  context "#repo_info" do
+    it "retrieves users repos" do
+      VCR.use_cassette("#repo_info") do
+
+
+        user = OpenStruct.new(
+        id: 94,
+         screen_name: "mcents",
+         uid: "16926627",
+          oauth_token: ENV['TOKKEN'],
+         name: "Michael Centrelli")
+
+        fol_info = GithubService.new(user).user_repo
+
+        expect(fol_info.class).to eq(Array)
+        expect(fol_info.first).to have_key(:name)
+      end
+    end
+  end
 end
