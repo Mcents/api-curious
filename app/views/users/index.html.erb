@@ -32,7 +32,8 @@
               <p><i class="fa fa-male fa-fw w3-margin-right w3-large w3-text-teal"></i>Following: <%= @presenter.user_info.following %></p>
               <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>Email: <%= @presenter.user_info.email %></p>
               <hr>
-              <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Repo's</p>
+
+              <h3><b>Repos</b></h3>
 
               <table class="w3-table w3-small">
                 <tr>
@@ -60,13 +61,10 @@
               <br>
 
               <div class="w3-light-grey w3-round-xlarge">
-                <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
               </div>
               <div class="w3-light-grey w3-round-xlarge">
-                <div class="w3-round-xlarge w3-teal" style="height:24px;width:55%"></div>
               </div>
               <div class="w3-light-grey w3-round-xlarge">
-                <div class="w3-round-xlarge w3-teal" style="height:24px;width:25%"></div>
               </div>
               <br>
             </div>
@@ -79,34 +77,57 @@
         <div class="w3-twothird">
 
           <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
-            <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>User Activity</h2>
-
-          <table class="w3-table w3-striped w3-small">
+            <br>
+            <div class="w3-bar w3-black">
+              <button class="w3-bar-item w3-button" onclick="openCity('London')">User Activity</button>
+              <button class="w3-bar-item w3-button" onclick="openCity('Paris')">Follower Activity</button>
+            </div>
+            <div id="London" class="city">
+              
+            <table class="w3-table w3-striped w3-small">
               <tr>
-                  <th>User and Repo</th>
-                    <th>Link</th>
-                    <th>Date Committed</th>
+                <th>User and Repo</th>
+                <th>Link</th>
+                <th>Date Committed</th>
               </tr>
 
-            <% @presenter.user_commits.each do |commit| %>
-              <tr>
+              <% @presenter.user_commits.each do |commit| %>
+                <tr>
 
-                <td><%= commit[:repo][:name] %></td>
-                <td><%= link_to commit[:repo][:url], commit[:repo][:url] %>
-                    <td><%= commit[:created_at].to_date.strftime("%B %d, %Y")
-                      %> <% end %></td>
+                  <td><%= commit[:repo][:name] %></td>
+                  <td><%= link_to commit[:repo][:url], commit[:repo][:url] %>
+                  <td><%= commit[:created_at].to_date.strftime("%B %d, %Y")
+                    %> <% end %></td>
 
               </tr>
             </table>
+            </div>
+
+            <div id="Paris" class="city" style="display:none">
+              
             <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Follower Activity</h2>
+
             <% @presenter.user_followers.each do |commit| %>
-            <%= commit[:repo][:name] %>
-          <% end %>
+              <%= commit[:repo][:name] %> ||
+            <% end %>
+            </div>
+
+            <script>
+              function openCity(cityName) {
+                var i;
+                var x = document.getElementsByClassName("city");
+                for (i = 0; i < x.length; i++) {
+                  x[i].style.display = "none";  
+                }
+                document.getElementById(cityName).style.display = "block";  
+              }
+            </script>
+          
 
             <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Starred Repo's</h2>
             <% @presenter.starred_repo.each do |commit| %>
-            <%= commit[:name] %>
-          <% end %>
+              <%= commit[:name] %>
+            <% end %>
 
 
             <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Repo's</h2>

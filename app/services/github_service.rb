@@ -33,6 +33,10 @@ class GithubService
   def user_repo
     parse(conn.get("users/#{user_name}/repos"))
   end
+
+  def pull_requests
+    parse(conn.get/("repos/#{user_name}/little_shop/pulls?state=all"))
+  end
   
    private
 
