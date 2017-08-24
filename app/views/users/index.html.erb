@@ -43,8 +43,8 @@
 
             <% @presenter.user_repo_info.each do |commit| %>
               <tr>
-              <td><%= commit[:name] %></td>
-              <td><%= link_to commit[:html_url], commit[:html_url] %>
+              <td><%= commit.repo_name %></td>
+              <td><%= link_to commit.html_url, commit.html_url %>
             <% end %></td>
                 </tr>
               </table>
