@@ -94,9 +94,9 @@
               <% @presenter.user_commits.each do |commit| %>
                 <tr>
 
-                  <td><%= commit[:repo][:name] %></td>
-                  <td><%= link_to commit[:repo][:url], commit[:repo][:url] %>
-                  <td><%= commit[:created_at].to_date.strftime("%B %d, %Y")
+                  <td><%= commit.commit_repo %></td>
+                  <td><%= link_to commit.commit_link, commit.commit_link %>
+                  <td><%= commit.commit_created
                     %> <% end %></td>
 
               </tr>
