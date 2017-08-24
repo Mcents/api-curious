@@ -17,6 +17,9 @@ describe GithubService do
 
         expect(user_info.class).to eq(Hash)
         expect(user_info).to have_key(:login)
+        expect(user_info).to have_key(:followers)
+        expect(user_info).to have_key(:email)
+        expect(user_info).to have_key(:created_at)
       end
     end
   end
@@ -79,6 +82,27 @@ describe GithubService do
 
         expect(fol_info.class).to eq(Array)
         expect(fol_info.first).to have_key(:name)
+      end
+    end
+  end
+
+  
+  context "#" do
+    it "retrieves users followers info" do
+      VCR.use_cassette("#follower_commits") do
+
+
+        user = OpenStruct.new(
+        id: 94,
+         screen_name: "mcents",
+         uid: "16926627",
+          oauth_token: ENV['TOKKEN'],
+         name: "Michael Centrelli")
+
+        fol_info = GithubService.new(user).follower_commits
+
+        expect(fol_info.class).to eq(Array)
+        expect(fol_info.first).to have_key(:repo)
       end
     end
   end
