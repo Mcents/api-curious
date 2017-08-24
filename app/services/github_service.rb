@@ -37,10 +37,10 @@ class GithubService
   def pull_requests
     parse(conn.get/("repos/#{user_name}/little_shop/pulls?state=all"))
   end
-  
-   private
 
-   def parse(response)
-       JSON.parse(response.body, symbolize_names: true)
-   end
+  private
+
+  def parse(response)
+    JSON.parse(response.body, symbolize_names: true)
+  end
 end
