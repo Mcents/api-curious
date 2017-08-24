@@ -126,7 +126,7 @@
 
             <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Starred Repo's</h2>
             <% @presenter.starred_repo.each do |commit| %>
-              <%= commit[:name] %>
+              <%= commit.repo_name %>
             <% end %>
 
 
